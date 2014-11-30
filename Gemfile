@@ -1,7 +1,7 @@
 source "https://rubygems.org"
 gem "bower-rails", "~> 0.7"
 
-ruby "2.1.1"
+ruby "2.1.4"
 gem "rails", "~> 4.1"
 gem "pg"
 
@@ -51,7 +51,7 @@ group :development do
 end
 
 group :development, :test do
-  gem "debugger"
+  gem "pry-byebug"
   gem "coveralls", require: false
   gem "codeclimate-test-reporter", require: false
 end
