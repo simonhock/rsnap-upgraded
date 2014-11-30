@@ -1,7 +1,7 @@
 source "https://rubygems.org"
 gem "bower-rails", "~> 0.7"
 
-ruby "2.1.1"
+ruby "2.1.4"
 gem "rails", "~> 4.1"
 gem "pg"
 
@@ -47,6 +47,7 @@ group :development do
   gem "metric_fu"
   gem "rails-erd"
   gem "railroady"
+  gem "ruby-progressbar"
 end
 
 group :development, :test do

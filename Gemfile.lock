@@ -481,6 +481,7 @@ DEPENDENCIES
   rmagick (~> 2.13)
   rolify (~> 3.4)
   rspec-rails
+  ruby-progressbar
   sass-rails (~> 4.0)
   sdoc
   selenium-webdriver (~> 2.41)
