@@ -21,7 +21,7 @@ gem "aws-sdk", "~> 1.5"
 gem "rmagick", "~> 2.13"
 
 gem "uglifier", ">= 1.3"
-gem "sass-rails", "3.1.4"
+gem "sass-rails", "~> 4.0"
 gem "haml", "~> 4.0"
 gem "haml-rails", "~> 0.5"
 gem "coffee-rails", "~> 4.0"
