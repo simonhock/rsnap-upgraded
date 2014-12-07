@@ -14,7 +14,7 @@
           = link_to "Projets libres", projects_path
         -if current_user.try(:has_role?, :admin)
           %li{:class=>resources_active("programs")}
-            = link_to "Programmes des étudiants", programs_path(all: true)
+            = link_to "Programmes des étudiants", programs_path  #(all: true)
 
       .navbar-right
         %ul.nav.navbar-nav

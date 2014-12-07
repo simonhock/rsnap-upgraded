@@ -51,7 +51,11 @@ class Mission < ActiveRecord::Base
       puts last_solved_program
       solved_missions = last_solved_program.mission.position if last_solved_program
       puts solved_missions
-      self.limit(solved_missions + 1)
+      if user.has_role?(:admin)
+      	self.limit(Mission.all.count)
+      else
+      	self.limit(solved_missions + 1)
+      end
     else
       self.limit(1)
     end
