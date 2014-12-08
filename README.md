@@ -11,31 +11,49 @@ Installation -- Linux only
 ============
 
 * install [postgresql](http://www.postgresql.org/), 
+	* Run "sudo apt-get install postgres-9.3"
+	* Run "sudo apt-get install libpq-dev" for dev libraries
 	* Run postgresql ("sudo su - postgres")
 	* Type "psql"
-	* Type "CREATE ROLE rsnap SUPERUSER CREATEDB"
-	* Type "\password rsnap"
-	* Enter the admin password
+	* Type "CREATE ROLE <username> SUPERUSER CREATEDB" where <username> is your computer username
 	* Type "\q" to quit
 	* Type "exit" to quit
-	
+
+* install libraries for rmagick
+	* run "sudo apt-get install libmagick9-dev"
+	* run "sudo apt-get install libmagickwand-dev"
 
 * copy `config/database.yml.example` to `config/database.yml` 
 	* configure `config/database.yml`. You should set usernames to "rsnap" and passwords to your choosen password.
 	
 
 * install and configure [rvm](https://rvm.io/) with ruby
-	* Run "\curl -sSL https://get.rvm.io | bash -s stable" to install RVM,
+	* Make sure you already have curl (running "which curl" tells you if you have it. If you don't have it, run sudo apt-get install curl)
+	* Run "\curl -sSL https://get.rvm.io | bash -s stable" to download RVM,
+		* If it fails, use "gpg --keyserver hpk://keys.gnupg.net --recv-keys D39DC0E3"
+	* Run "source ~/.rvm/scripts/rvm" or re-open shells
 	* Run "rvm install 2.1.1" to install ruby 2.1.1
 	* Run "rvm install rubygems latest" to install rubygems
 	* Run "gem install rails -v '4.1' " to install rails 4.1
 	
 * Make sure you have qmake installed.
-	* To do so, run "which qmake"
-	* If you don't have it, install QT:
-		*Run "sudo apt-get install libqt4-dev libqtwebkit-dev libqt5webkit5-dev"
+	*Run "sudo apt-get install libqt4-dev libqtwebkit-dev libqt5webkit5-dev"
+
+* cd to the repository of rsnap
 
 * run `bundle intall` and install all dependencies needed for the gems
+
+* make sure you have bower installed 
+	* run "sudo apt-get install npm"
+	* run "sudo npm install bower -g"
+	* run "sudo apt-get install nodejs-legacy"
+
+* make sure you have a public key configured
+	* run 'ls -al ~/.ssh"
+	If there are no "id_rsa.pub" or files like that,
+		* run "ssh-keygen -t rsa -c "your_email@here.com"
+		* run "ssh-add ~/.ssh/id_rsa"
+		* add the ssh public key to your github account
 
 * run `rake bower:install`
 
@@ -43,6 +61,11 @@ Installation -- Linux only
 
 * run `rake db:create db:migrate`
 	* This will create the database.
+
+* Check for the file "config/secrets.yml".
+	It should at least contain "
+			production:
+  				secret_key_base: <%= ENV["SECRET_KEY_BASE"] %>"
 
 * run `rails s` to launch server
 	* Create an account. This will be your admin account.
