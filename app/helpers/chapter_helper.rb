@@ -6,4 +6,11 @@ module ChapterHelper
       '/chapter_missions/'
     end
   end
+  def add_chapter_missions_path(chapter)
+    if :id
+      "/chapters/#{chapter.id}/add_mission/"
+    else
+      '/chapters/'
+    end
+  end
 end
