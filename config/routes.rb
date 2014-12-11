@@ -4,6 +4,8 @@ Rsnap::Application.routes.draw do
   resources :file_missions
 
   resources :missions
+  resources :chapters
+  get '/chapter_missions/:id', to:'chapter_missions#show'
   resources :mission_programs, :only=>[:show, :update]
   resources :sort_missions, :only=>:update
   resources :initialization_program_missions, :only=>[:new]

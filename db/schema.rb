@@ -11,10 +11,26 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20140324134215) do
+ActiveRecord::Schema.define(version: 20141210151729) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
+
+  create_table "chapters", force: true do |t|
+    t.string   "title"
+    t.text     "description"
+    t.text     "small_description"
+    t.string   "youtube_link"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  create_table "chapters_missions", id: false, force: true do |t|
+    t.integer "chapter_id"
+    t.integer "mission_id"
+  end
+
+  add_index "chapters_missions", ["chapter_id", "mission_id"], name: "index_chapters_missions_on_chapter_id_and_mission_id", using: :btree
 
   create_table "file_missions", force: true do |t|
     t.integer  "mission_id"

@@ -10,6 +10,9 @@
       %ul.nav.navbar-nav
         %li{:class=>resources_active("missions")}
           = link_to "Missions", missions_path
+        -if current_user.try(:has_role?, :admin)
+          %li{:class=>resources_active("chapters")}
+            = link_to "Chapitres", chapters_path  #(all: true)
         %li{:class=>resources_active("projects")}
           = link_to "Projets libres", projects_path
         -if current_user.try(:has_role?, :admin)

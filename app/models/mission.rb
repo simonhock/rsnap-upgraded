@@ -22,6 +22,8 @@ class Mission < ActiveRecord::Base
 
   has_many :programs, :dependent=>:destroy
   has_many :file_missions, :dependent=>:destroy
+  
+  has_and_belongs_to_many :chapters
 
   has_attached_file :source_code
 
