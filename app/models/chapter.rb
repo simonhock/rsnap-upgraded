@@ -16,16 +16,33 @@ class Chapter < ActiveRecord::Base
   has_and_belongs_to_many :missions
 
   def self.visible_for(user)
-    Chapter.all
+    if user
+      if user.has_role?(:admin)
+        return Chapter.all
+      end
+      num_solved_chapter = 0
+      for chapter in Chapter.all
+        break if not chapter.is_solved_by?(user)
+        num_solved_chapter = num_solved_chapter + 1
+      end
+      Chapter.limit(num_solved_chapter + 1)
+    else
+      return Chapter.limit(1)
+    end
   end
   
   def is_solved_by?(user)
     if user
-      solved = true
       for mission in self.missions
-        solved = solved and mission.is_solved_by?(user)
+        if not mission.is_solved_by?(user)
+          return false
+        end
       end
-      solved
+      if self.missions.empty?
+        false
+      else
+        true
+      end
     else
       false
     end
