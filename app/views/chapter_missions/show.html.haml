@@ -7,7 +7,6 @@
 %table.table.table-striped.table-bordered.table-hover{sort_tag}
   %thead
     %tr
-      %th N°
       %th Title
       %th Description
       -if user_signed_in? and current_user.has_role?(:admin)
@@ -15,7 +14,8 @@
         %th
         %th
   %tbody
-    = render @missions
+    -for mission in @missions
+      = render Mission.where(:id=>mission.id), from_chapter: true, disabled: @disabled_from
 
 -if user_signed_in? and current_user.has_role?(:admin)
   %p

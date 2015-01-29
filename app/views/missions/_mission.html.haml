@@ -1,6 +1,7 @@
 %tr.item{data: {update_url:"#{sort_mission_path(mission)}", ordered_row: "mission_order"}}
-  %td= mission.position
-  %td= button mission.title, mission, :id=>"show-mission-#{mission.id}", :type=>(mission.is_solved_by?(current_user) ? :primary : :success)
+  -if not from_chapter
+    %td= mission.position
+  %td= button mission.title, mission, :id=>"show-mission-#{mission.id}", :type=>(mission.is_solved_by?(current_user) ? :primary : ((from_chapter and @missions.index(mission)>=disabled) ? :default : :success)), :disabled=>((from_chapter and @missions.index(mission)>=disabled) ? true : false)
   %td= raw mission.small_description
   -if user_signed_in? and current_user.has_role?(:admin)
     %td= button "Editer", edit_mission_path(mission), type: :primary

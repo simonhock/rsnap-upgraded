@@ -47,5 +47,18 @@ class Chapter < ActiveRecord::Base
       false
     end
   end
+  
+  def get_disabled_from(user)
+    if user
+      solved = 0
+      for mission in self.missions
+        if mission.is_solved_by?(user)
+          solved = solved + 1
+        end
+      end
+      return solved + 1
+    end
+    1
+  end
 
 end

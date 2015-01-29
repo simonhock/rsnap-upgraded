@@ -25,5 +25,6 @@ class ChapterMissionsController < ApplicationController
     def set_chapter_missions
       @chapter = Chapter.find_by_id(params[:id])
       @missions = @chapter.missions
+      @disabled_from = @chapter.get_disabled_from(current_user)
     end
 end
