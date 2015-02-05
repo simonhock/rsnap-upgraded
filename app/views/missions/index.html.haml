@@ -12,8 +12,9 @@
       %th Description
       -if user_signed_in? and current_user.has_role?(:admin)
         %th
-        %th
-        %th
+        -if not @from_chapter
+          %th
+          %th
   %tbody
     = render @missions, from_chapter: false
 

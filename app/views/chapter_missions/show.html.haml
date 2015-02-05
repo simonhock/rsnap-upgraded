@@ -15,8 +15,9 @@
         %th
   %tbody
     -for mission in @missions
-      = render Mission.where(:id=>mission.id), from_chapter: true, disabled: @disabled_from
+      = render Mission.where(:id=>mission.id), from_chapter: true, chapter_from: @chapter, disabled: @disabled_from
 
 -if user_signed_in? and current_user.has_role?(:admin)
   %p
     = button "Nouvelle mission", new_mission_path, type: :success
+    = button "Ajouter une mission", add_chapter_missions_path(@chapter), type: :success

@@ -1,6 +1,7 @@
 class ChaptersController < ApplicationController
   authorize_actions_for Chapter
-  before_action :set_chapter, only: [:show, :edit, :update, :destroy]
+  authorize_actions_for Mission
+  before_action :set_chapter, only: [:show, :edit, :update, :destroy, :remove_mission]
   before_filter :authenticate_user!, :except=>[:index, :show]
 
   def index
@@ -37,17 +38,27 @@ class ChaptersController < ApplicationController
   end
 
   def update
-    if @chapter.update(chapter_params)
-      redirect_to @chapter, notice: "Le chapitre a bien été mis à jour."
+    if params[:mission_id]
+      @chapter.add_mission(Mission.find_by(:id=>params[:mission_id]))
+      redirect_to "/chapter_missions/#{@chapter.id}", notice: "La mission a bien été ajoutée."
     else
-      @title = "Modifier le chapitre : #{@chapter.title}"
-      render :edit
+      if @chapter.update(chapter_params)
+        redirect_to @chapter, notice: "Le chapitre a bien été mis à jour."
+      else
+        @title = "Modifier le chapitre : #{@chapter.title}"
+        render :edit
+      end
     end
   end
 
-  def destroy
-    @chapter.destroy
-    redirect_to chapters_url, notice: "Le chapitre a bien été supprimé."
+  def destroy 
+    if not params[:mission_id].nil?
+      Chapter.find_by(:id=>params[:id]).remove_mission(Mission.find_by(:id=>params[:mission_id]))
+      redirect_to "/chapter_missions/#{params[:id]}", notice: "La mission a bien été retirée du chapitre."
+    else
+      @chapter.destroy
+      redirect_to chapters_url, notice: "Le chapitre a bien été supprimé."
+    end
   end
 
   private
