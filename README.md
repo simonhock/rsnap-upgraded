@@ -11,11 +11,12 @@ Installation -- Linux only
 ============
 
 * install [postgresql](http://www.postgresql.org/), 
-	* Run "sudo apt-get install postgres-9.3"
+        * Run "wget --quiet -O - https://www.postgresql.org/media/keys/ACCC4CF8.asc | sudo apt-key add - & apt-get update & apt-get upgrade"
+	* Run "sudo apt-get install postgres-9.4"
 	* Run "sudo apt-get install libpq-dev" for dev libraries
 	* Run postgresql ("sudo su - postgres")
 	* Type "psql"
-	* Type "CREATE ROLE <username> SUPERUSER CREATEDB" where <username> is your computer username
+	* Type "CREATE ROLE 'username' SUPERUSER CREATEDB" where <username> is your computer username
 	* Type "\q" to quit
 	* Type "exit" to quit
 
