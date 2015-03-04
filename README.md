@@ -16,7 +16,7 @@ Installation -- Linux only
 	* Run "sudo apt-get install libpq-dev" for dev libraries
 	* Run postgresql ("sudo su - postgres")
 	* Type "psql"
-	* Type "CREATE ROLE 'username' SUPERUSER CREATEDB" where <username> is your computer username
+	* Type "CREATE ROLE 'username' SUPERUSER CREATEDB" where 'username' is your computer username
 	* Type "\q" to quit
 	* Type "exit" to quit
 
