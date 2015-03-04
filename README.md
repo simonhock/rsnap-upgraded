@@ -30,7 +30,7 @@ Installation -- Linux only
 
 * install and configure [rvm](https://rvm.io/) with ruby
 	* Make sure you already have curl (running "which curl" tells you if you have it. If you don't have it, run sudo apt-get install curl)
-	* Run "\curl -sSL https://get.rvm.io | bash -s stable" to download RVM,
+	* Run "\curl -sSL https://get.rvm.io | bash " to download RVM,
 		* If it fails, use "gpg --keyserver hkp://keys.gnupg.net --recv-keys D39DC0E3"
 	* Add the line "source $HOME/.rvm/scripts/rvm" line to the end of ~/.bashrc
 	* Run "rvm install 2.1.1" to install ruby 2.1.1
